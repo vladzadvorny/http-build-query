@@ -1,18 +1,20 @@
 {
-  "name": "my-node-boilerplate",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/vladzadvorny/my-node-boilerplate.git",
+  "name": "http-build-query",
+  "version": "0.0.1",
+  "main": "dist/main",
+  "repository": "https://github.com/vladzadvorny/http-build-query.git",
   "author": "Vlad Zadvorny <vladzadvorny@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "rimraf ./dist && babel -d ./dist ./src -s && node dist/main.js",
-    "dev": "nodemon dev.js",
+    "build": "rimraf ./dist && babel -d ./dist ./src -s",
+    "test": "mocha tests/test.js",
     "lint:js": "eslint ./src",
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
-    "babel-register": "^6.24.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-prettier": "^2.1.1",
@@ -20,7 +22,9 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "lint-staged": "^3.5.1",
-    "pre-commit": "^1.2.2"
+    "mocha": "^3.4.2",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.1"
   },
   "lint-staged": {
     "*.js": "eslint"
@@ -36,19 +40,13 @@
     }
   },
   "pre-commit": "lint-staged",
-  "dependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-preset-env": "^1.5.1",
-    "rimraf": "^2.6.1"
-  },
   "babel": {
     "presets": [
       [
         "env",
         {
           "targets": {
-            "node": "current"
+            "node": "4.8.3"
           }
         }
       ]
