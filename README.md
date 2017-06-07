@@ -48,4 +48,4 @@ const obj2 = {
 httpBuildQuery(obj2, 'flags_'); 
 ```
 
-![Tests](https://github.com/vladzadvorny/http-build-query/tests/tests.png "Result Example #3 http_build_query()")
+![Tests](https://raw.githubusercontent.com/vladzadvorny/http-build-query/master/tests/tests.png "Result Example #3 http_build_query()")
