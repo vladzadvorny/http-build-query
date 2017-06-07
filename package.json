@@ -1,6 +1,6 @@
 {
   "name": "http-build-query",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/main",
   "repository": "https://github.com/vladzadvorny/http-build-query.git",
   "author": "Vlad Zadvorny <vladzadvorny@gmail.com>",
