@@ -21,4 +21,31 @@ const obj = {
   };
 
 httpBuildQuery(obj); // message=hello&id=777&token=x2s7d
+
+// Example #3 http_build_query() with complex arrays
+// from php documentation: http://php.net/manual/en/function.http-build-query.php
+const obj2 = {
+    user: {
+      name: 'Bob Smith',
+      age: 47,
+      sex: 'M',
+      dob: '5/12/1956'
+    },
+    pastimes: ['golf', 'opera', 'poker', 'rap'],
+    children: {
+      bobby: {
+        age: 12,
+        sex: 'M'
+      },
+      sally: {
+        age: 8,
+        sex: 'F'
+      }
+    },
+    '+0': 'CEO' // '+' is hack :)
+  };
+
+httpBuildQuery(obj2, 'flags_'); 
 ```
+
+![Tests](https://github.com/vladzadvorny/http-build-query/tests/tests.png "Result Example #3 http_build_query()")
