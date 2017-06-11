@@ -1,5 +1,5 @@
 const esc = param =>
-  encodeURIComponent(param).replace(/[!'()*]/g, '').replace(/%20/g, '+');
+  encodeURIComponent(param).replace(/[!'()*]/g, escape).replace(/%20/g, '+');
 const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
 const httpBuildQuery = (
