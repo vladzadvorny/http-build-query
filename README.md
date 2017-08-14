@@ -42,10 +42,8 @@ const obj2 = {
         sex: 'F'
       }
     },
-    '+0': 'CEO' // '+' is hack :)
+    '+0': 'CEO'
   };
 
 httpBuildQuery(obj2, 'flags_'); 
 ```
-
-![Tests](https://raw.githubusercontent.com/vladzadvorny/http-build-query/master/tests/tests.png "Result Example #3 http_build_query()")

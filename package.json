@@ -1,55 +1,14 @@
 {
   "name": "http-build-query",
-  "version": "0.0.3",
-  "main": "dist/main",
+  "version": "0.1.1",
+  "main": "index.js",
   "repository": "https://github.com/vladzadvorny/http-build-query.git",
   "author": "Vlad Zadvorny <vladzadvorny@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf ./dist && babel -d ./dist ./src -s",
-    "test": "mocha tests/test.js",
-    "lint:js": "eslint ./src",
-    "lint-staged": "lint-staged"
+    "test": "mocha test.js"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-preset-env": "^1.5.1",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-config-prettier": "^2.1.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
-    "eslint-plugin-react": "^7.0.1",
-    "lint-staged": "^3.5.1",
-    "mocha": "^3.4.2",
-    "pre-commit": "^1.2.2",
-    "rimraf": "^2.6.1"
-  },
-  "lint-staged": {
-    "*.js": "eslint"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
-    "env": {
-      "node": true
-    }
-  },
-  "pre-commit": "lint-staged",
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "4.8.3"
-          }
-        }
-      ]
-    ]
+    "mocha": "^3.4.2"
   }
 }

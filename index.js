@@ -2,12 +2,11 @@ const esc = param =>
   encodeURIComponent(param).replace(/[!'()*]/g, escape).replace(/%20/g, '+');
 const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
-const httpBuildQuery = (
-  queryData,
-  numericPrefix = null,
-  argSeparator = '&',
-  tempKey = null
-) => {
+const httpBuildQuery = (queryData, numericPrefix, argSeparator, tempKey) => {
+  numericPrefix = numericPrefix || null;
+  argSeparator = argSeparator || '&';
+  tempKey = tempKey || null;
+
   const query = Object.keys(queryData).map(k => {
     let res;
     let key = k;
