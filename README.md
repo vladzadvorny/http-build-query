@@ -1,20 +1,24 @@
 # httpBuildQuery() 
 
+[![NPM Version](https://img.shields.io/npm/v/http-build-query.svg)](https://www.npmjs.com/package/http-build-query)
+[![NPM Download](https://img.shields.io/npm/dm/http-build-query.svg)](https://www.npmjs.com/package/http-build-query)
+[![License](https://img.shields.io/npm/l/http-build-query.svg)](https://github.com/vladzadvorny/http-build-query/blob/master/LICENSE)
+
 Generate URL-encoded query string from the object (php's http_build_query() in js).
 
-#### Installation:
+## Installation:
 
 ```sh
 $ npm install http-build-query
 ```
 
-#### Example:
+## Usage:
 
 ```javascript
-const httpBuildQuery = require('http-build-query');
+var httpBuildQuery = require('http-build-query');
 
 // Simple using
-const obj = {
+var obj = {
     message: 'hello',
     id: '777',
     token: 'x2s7d'
@@ -24,7 +28,7 @@ httpBuildQuery(obj); // message=hello&id=777&token=x2s7d
 
 // Example #3 http_build_query() with complex arrays
 // from php documentation: http://php.net/manual/en/function.http-build-query.php
-const obj2 = {
+var obj2 = {
     user: {
       name: 'Bob Smith',
       age: 47,

@@ -1,6 +1,6 @@
 {
   "name": "http-build-query",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "Generate URL-encoded query string from the object (php's http_build_query() in js)",
   "repository": {
