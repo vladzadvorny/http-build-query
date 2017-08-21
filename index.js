@@ -1,27 +1,33 @@
-const esc = param =>
-  encodeURIComponent(param).replace(/[!'()*]/g, escape).replace(/%20/g, '+');
-const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
+var esc = function(param) {
+  return encodeURIComponent(param)
+    .replace(/[!'()*]/g, escape)
+    .replace(/%20/g, '+');
+};
 
-const httpBuildQuery = (queryData, numericPrefix, argSeparator, tempKey) => {
+var isNumeric = function(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
   numericPrefix = numericPrefix || null;
   argSeparator = argSeparator || '&';
   tempKey = tempKey || null;
 
-  const query = Object.keys(queryData).map(k => {
-    let res;
-    let key = k;
+  var query = Object.keys(queryData).map(k => {
+    var res;
+    var key = k;
 
     if (tempKey) {
-      key = `${tempKey}[${key}]`;
+      key = tempKey + '[' + key + ']';
     }
 
     if (typeof queryData[k] === 'object') {
       res = httpBuildQuery(queryData[k], null, argSeparator, key);
     } else {
       if (numericPrefix) {
-        key = isNumeric(key) ? `${numericPrefix}${+key}` : key;
+        key = isNumeric(key) ? numericPrefix + Number(key) : key;
       }
-      res = `${esc(key)}=${esc(queryData[k])}`;
+      res = esc(key) + '=' + esc(queryData[k]);
     }
 
     return res;

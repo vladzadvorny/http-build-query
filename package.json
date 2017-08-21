@@ -1,10 +1,11 @@
 {
   "name": "http-build-query",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "index.js",
   "repository": "https://github.com/vladzadvorny/http-build-query.git",
   "author": "Vlad Zadvorny <vladzadvorny@gmail.com>",
   "license": "MIT",
+  "keywords": ["http", "build", "query", "url"],
   "scripts": {
     "test": "mocha test.js"
   },
