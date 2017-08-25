@@ -1,6 +1,6 @@
 {
   "name": "http-build-query",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "index.js",
   "description": "Generate URL-encoded query string from the object (php's http_build_query() in js)",
   "repository": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "keywords": ["http", "build", "query", "url"],
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
