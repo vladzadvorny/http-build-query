@@ -1,17 +1,18 @@
-var esc = function(param) {
-  return encodeURIComponent(param)
+var esc = param =>
+  encodeURIComponent(param)
     .replace(/[!'()*]/g, escape)
     .replace(/%20/g, '+');
-};
 
-var isNumeric = function(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
+var isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
-var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
+var httpBuildQuery = (queryData, numericPrefix, argSeparator, tempKey) => {
   numericPrefix = numericPrefix || null;
   argSeparator = argSeparator || '&';
   tempKey = tempKey || null;
+
+  if (!queryData) {
+    return '';
+  }
 
   var query = Object.keys(queryData).map(k => {
     var res;
@@ -27,7 +28,16 @@ var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
       if (numericPrefix) {
         key = isNumeric(key) ? numericPrefix + Number(key) : key;
       }
-      res = esc(key) + '=' + esc(queryData[k]);
+
+      if (queryData[k] !== '') {
+        var val = queryData[k];
+        if (val === true) {
+          val = '1';
+        } else if (val === false) {
+          val = '0';
+        }
+        res = esc(key) + '=' + esc(val);
+      }
     }
 
     return res;
