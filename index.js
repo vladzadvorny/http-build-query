@@ -1,11 +1,14 @@
-var esc = param =>
-  encodeURIComponent(param)
+var esc = function(param) {
+  return encodeURIComponent(param)
     .replace(/[!'()*]/g, escape)
     .replace(/%20/g, '+');
+};
 
-var isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
+var isNumeric = function(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
 
-var httpBuildQuery = (queryData, numericPrefix, argSeparator, tempKey) => {
+var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
   numericPrefix = numericPrefix || null;
   argSeparator = argSeparator || '&';
   tempKey = tempKey || null;
@@ -14,7 +17,7 @@ var httpBuildQuery = (queryData, numericPrefix, argSeparator, tempKey) => {
     return '';
   }
 
-  var query = Object.keys(queryData).map(k => {
+  var query = Object.keys(queryData).map(function(k) {
     var res;
     var key = k;
 

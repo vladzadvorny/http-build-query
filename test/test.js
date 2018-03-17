@@ -3,9 +3,9 @@ var httpBuildQuery = require('../index');
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 
-describe('Using http-build-query', () => {
-  it('buildQuery BASE', () => {
-    let params = {
+describe('Using http-build-query', function() {
+  it('buildQuery BASE', function() {
+    var params = {
       string_value: 'test_value',
       null_value: null,
       empty_string: '',
@@ -20,7 +20,7 @@ describe('Using http-build-query', () => {
       }
     };
 
-    let result = httpBuildQuery(params);
+    var result = httpBuildQuery(params);
 
     expect(result).to.not.have.string('empty_string=');
     expect(result).to.not.have.string('null_value=');
@@ -29,7 +29,7 @@ describe('Using http-build-query', () => {
     expect(result).to.have.string('string_value=test_value');
   });
 
-  it('Example #3 http_build_query() from php documentation', () => {
+  it('Example #3 http_build_query() from php documentation', function() {
     var expectedResult =
       'user%5Bname%5D=Bob+Smith&user%5Bage%5D=47&user%5Bsex%5D=M&user%5Bdob%5D=5%2F12%2F1956&pastimes%5B0%5D=golf&pastimes%5B1%5D=opera&pastimes%5B2%5D=poker&pastimes%5B3%5D=rap&children%5Bbobby%5D%5Bage%5D=12&children%5Bbobby%5D%5Bsex%5D=M&children%5Bsally%5D%5Bage%5D=8&children%5Bsally%5D%5Bsex%5D=F&flags_0=CEO';
     var data = {
