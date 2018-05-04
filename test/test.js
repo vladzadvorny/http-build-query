@@ -6,27 +6,27 @@ var expect = require('chai').expect;
 describe('Using http-build-query', function() {
   it('buildQuery BASE', function() {
     var params = {
-      string_value: 'test_value',
-      null_value: null,
-      empty_string: '',
-      number_string: 196645,
-      zero_value: 0,
+      string: 'test',
+      null: null,
+      empty: '',
+      number: 196645,
+      zero: 0,
       params: {
-        string_value: 'test_value',
-        null_value: null,
-        empty_string: '',
-        number_string: 196645,
-        zero_value: 0
+        string: 'test',
+        null: null,
+        empty: '',
+        number: 196645,
+        zero: 0
       }
     };
 
     var result = httpBuildQuery(params);
 
-    expect(result).to.not.have.string('empty_string=');
-    expect(result).to.not.have.string('null_value=');
-    expect(result).to.have.string('number_string=196645');
-    expect(result).to.have.string('zero_value=0');
-    expect(result).to.have.string('string_value=test_value');
+    expect(result).to.have.string('empty=&');
+    expect(result).to.have.string('null=&');
+    expect(result).to.have.string('number=196645');
+    expect(result).to.have.string('zero=0');
+    expect(result).to.have.string('string=test');
   });
 
   it('Example #3 http_build_query() from php documentation', function() {

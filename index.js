@@ -25,22 +25,21 @@ var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
       key = tempKey + '[' + key + ']';
     }
 
-    if (typeof queryData[k] === 'object') {
+    if (typeof queryData[k] === 'object' && queryData[k] !== null) {
       res = httpBuildQuery(queryData[k], null, argSeparator, key);
     } else {
       if (numericPrefix) {
         key = isNumeric(key) ? numericPrefix + Number(key) : key;
       }
 
-      if (queryData[k] !== '') {
-        var val = queryData[k];
-        if (val === true) {
-          val = '1';
-        } else if (val === false) {
-          val = '0';
-        }
-        res = esc(key) + '=' + esc(val);
-      }
+      var val = queryData[k];
+
+      val = val === true ? '1' : val;
+      val = val === false ? '0' : val;
+      val = val === 0 ? '0' : val;
+      val = val || '';
+
+      res = esc(key) + '=' + esc(val);
     }
 
     return res;
