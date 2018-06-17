@@ -1,16 +1,20 @@
 {
   "name": "http-build-query",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "main": "index.js",
-  "description":
-    "Generate URL-encoded query string from the object (php's http_build_query() in js)",
+  "description": "Generate URL-encoded query string from the object (php's http_build_query() in js)",
   "repository": {
     "type": "git",
     "url": "https://github.com/vladzadvorny/http-build-query.git"
   },
   "author": "Vlad Zadvorny <vladzadvorny@gmail.com>",
   "license": "MIT",
-  "keywords": ["http", "build", "query", "url"],
+  "keywords": [
+    "http",
+    "build",
+    "query",
+    "url"
+  ],
   "scripts": {
     "test": "mocha"
   },

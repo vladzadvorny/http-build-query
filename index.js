@@ -8,6 +8,16 @@ var isNumeric = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
+var cleanArray = function(actual) {
+  var newArray = new Array();
+  for (var i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+};
+
 var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
   numericPrefix = numericPrefix || null;
   argSeparator = argSeparator || '&';
@@ -45,7 +55,9 @@ var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
     return res;
   });
 
-  return query.join(argSeparator).replace(/[!'()*]/g, '');
+  return cleanArray(query)
+    .join(argSeparator)
+    .replace(/[!'()*]/g, '');
 };
 
 module.exports = httpBuildQuery;
