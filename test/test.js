@@ -4,6 +4,17 @@ var assert = require('chai').assert;
 var expect = require('chai').expect;
 
 describe('Using http-build-query', function() {
+
+  it('should return an empty string for empty input', function() {
+    var inputNull = null;
+    var inputUndefined = {}.nothing;
+    var inputEmpty = {};
+    var expectedResult = '';
+    assert(expectedResult === httpBuildQuery(inputNull), 'null yields empty string');
+    assert(expectedResult === httpBuildQuery(inputUndefined), 'undefined yields empty string');
+    assert(expectedResult === httpBuildQuery(inputEmpty), 'empty objects yield empty string');
+  });
+
   it('buildQuery BASE', function() {
     var params = {
       string: 'test',
@@ -53,6 +64,26 @@ describe('Using http-build-query', function() {
       '+0': 'CEO'
     };
     var result = httpBuildQuery(data, 'flags_');
+    assert(result === expectedResult);
+  });
+
+  it('should serialize an array of objects', function() {
+    var input = {
+      children: [{
+          name: 'bobby',
+          age: 12,
+          sex: 'M'
+        }, {
+          name: 'sally',
+          age: 8,
+          sex: 'F'
+        }
+      ]
+    };
+    var result = httpBuildQuery(input);
+    var expectedResult = encodeURI(
+      'children[0][name]=bobby&children[0][age]=12&children[0][sex]=M&children[1][name]=sally&children[1][age]=8&children[1][sex]=F'
+    );
     assert(result === expectedResult);
   });
 });
