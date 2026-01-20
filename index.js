@@ -8,6 +8,7 @@
 function encodeParam(param) {
   return encodeURIComponent(param)
     .replace(/[!'()*]/g, escape)
+    .replace(/\*/g, "%2A")
     .replace(/%20/g, "+");
 }
 
