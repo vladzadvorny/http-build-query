@@ -1,8 +1,8 @@
 {
   "name": "http-build-query",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "index.js",
-  "description": "Generate URL-encoded query string from the object (php's http_build_query() in js)",
+  "description": "Generate URL-encoded query string from the object (php's http_build_query() in JavaScript)",
   "repository": {
     "type": "git",
     "url": "https://github.com/vladzadvorny/http-build-query.git"
@@ -13,19 +13,22 @@
     "http",
     "build",
     "query",
-    "url"
+    "url",
+    "php",
+    "http_build_query"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint index.js test/test.js"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.17.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-node": "^6.0.0",
-    "mocha": "^3.4.2"
+    "chai": "^4.3.10",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "mocha": "^10.2.0"
   },
   "engines": {
-    "node": ">=0.10.48"
+    "node": ">=6.0.0"
   }
 }

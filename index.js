@@ -1,63 +1,90 @@
-var esc = function(param) {
+"use strict";
+
+/**
+ * Encode a parameter for URL query string
+ * @param {string} param - Parameter to encode
+ * @returns {string} Encoded parameter
+ */
+function encodeParam(param) {
   return encodeURIComponent(param)
     .replace(/[!'()*]/g, escape)
-    .replace(/%20/g, '+');
-};
+    .replace(/%20/g, "+");
+}
 
-var isNumeric = function(n) {
+/**
+ * Check if a value is numeric
+ * @param {*} n - Value to check
+ * @returns {boolean} True if numeric
+ */
+function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
-};
+}
 
-var cleanArray = function(actual) {
-  var newArray = new Array();
-  for (var i = 0; i < actual.length; i++) {
-    if (actual[i]) {
-      newArray.push(actual[i]);
+/**
+ * Filter out falsy values from array
+ * @param {Array} arr - Array to clean
+ * @returns {Array} Cleaned array
+ */
+function cleanArray(arr) {
+  var result = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      result.push(arr[i]);
     }
   }
-  return newArray;
-};
+  return result;
+}
 
-var httpBuildQuery = function(queryData, numericPrefix, argSeparator, tempKey) {
+/**
+ * Generate URL-encoded query string from object (PHP's http_build_query() in JavaScript)
+ * @param {Object} queryData - Data to convert to query string
+ * @param {string|null} numericPrefix - Prefix for numeric keys
+ * @param {string} argSeparator - Separator between arguments (default: '&')
+ * @param {string|null} tempKey - Temporary key for nested objects
+ * @returns {string} URL-encoded query string
+ */
+function httpBuildQuery(queryData, numericPrefix, argSeparator, tempKey) {
   numericPrefix = numericPrefix || null;
-  argSeparator = argSeparator || '&';
+  argSeparator = argSeparator || "&";
   tempKey = tempKey || null;
 
-  if (!queryData) {
-    return '';
+  if (!queryData || typeof queryData !== "object") {
+    return "";
   }
 
-  var query = Object.keys(queryData).map(function(k) {
-    var res;
+  var query = Object.keys(queryData).map(function (k) {
     var key = k;
+    var value = queryData[k];
 
     if (tempKey) {
-      key = tempKey + '[' + key + ']';
+      key = tempKey + "[" + key + "]";
     }
 
-    if (typeof queryData[k] === 'object' && queryData[k] !== null) {
-      res = httpBuildQuery(queryData[k], null, argSeparator, key);
+    if (typeof value === "object" && value !== null) {
+      return httpBuildQuery(value, null, argSeparator, key);
+    }
+
+    if (numericPrefix) {
+      key = isNumeric(key) ? numericPrefix + Number(key) : key;
+    }
+
+    // Convert boolean and handle falsy values
+    if (value === true) {
+      value = "1";
+    } else if (value === false) {
+      value = "0";
+    } else if (value === 0) {
+      value = "0";
     } else {
-      if (numericPrefix) {
-        key = isNumeric(key) ? numericPrefix + Number(key) : key;
-      }
-
-      var val = queryData[k];
-
-      val = val === true ? '1' : val;
-      val = val === false ? '0' : val;
-      val = val === 0 ? '0' : val;
-      val = val || '';
-
-      res = esc(key) + '=' + esc(val);
+      value = value || "";
     }
 
-    return res;
+    return encodeParam(key) + "=" + encodeParam(value);
   });
 
   return cleanArray(query)
     .join(argSeparator)
-    .replace(/[!'()*]/g, '');
-};
+    .replace(/[!'()*]/g, "");
+}
 
 module.exports = httpBuildQuery;
